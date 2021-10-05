@@ -1,0 +1,49 @@
+<form>:
+
+    MDTextField:
+        id: namebox
+        hint_text: "Name: "
+
+        multiline: False
+        size_hint: 0.7,0.1
+        pos_hint: {"center_x": 0.5, "center_y": 0.7}
+        on_text_validate: emailbox.focus = True
+    MDTextField:
+        id: emailbox
+        hint_text: "Email: "
+        size_hint: 0.7,0.1
+        multiline: False
+
+        on_text_validate: gradebox.focus = True
+
+
+        pos_hint: {"center_x": 0.5, "center_y": 0.6}
+
+    MDTextField:
+        id: gradebox
+        hint_text: "Grade: "
+        size_hint: 0.7,0.1
+        multiline: False
+
+        on_text_validate: teacherbox.focus = True
+
+
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+    MDTextField:
+        id: teacherbox
+        hint_text: "Teacher: "
+        size_hint: 0.7,0.1
+        multiline: False
+
+        on_text_validate:root.take_values()
+
+
+        pos_hint: {"center_x": 0.5, "center_y": 0.4}
+
+    MDRoundFlatButton:
+        text: "Done"
+        pos_hint: {"center_x": 0.5, "center_y": 0.3}
+        on_press: root.logintofirebase()
+        increment_width: "164dp"
+        md_bg_color: app.theme_cls.primary_color
+        text_color: (1,1,1,1)
