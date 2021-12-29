@@ -1,0 +1,9 @@
+#:import ZBarCam kivy.garden.zbarcam.ZBarCam
+#:import ZBarSymbol pyzbar.pyzbar.ZBarSymbol
+BoxLayout:
+    orientation: 'vertical'
+    ZBarCam:
+        id: zbarcam
+        # optional, by default checks all types
+        code_types: ZBarSymbol.QRCODE, ZBarSymbol.EAN13
+    MDRectangleFlatButton

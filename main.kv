@@ -1,0 +1,367 @@
+ScreenManager:
+    LoginScreenExistingUsers:
+    CreateAAccountScreen:
+    Home_Screen:
+    Accepted_page:
+
+
+
+
+<LoginScreenExistingUsers>:
+
+    name: "LoginScreenExistingUsers"
+
+    BoxLayout:
+        orientation: "vertical"
+
+        MDToolbar:
+            id: toolbar
+
+
+
+
+            title: "LOGIN"
+            elevation: 10
+
+
+        MDLabel:
+            text: ""
+            halign: "center"
+    FloatLayout:
+        size: (root.height, root.width)
+    MDTextField:
+        id: emailbox
+        hint_text: "Enter your email: "
+
+        multiline: False
+        size_hint: 0.7,0.1
+        pos_hint: {"center_x": 0.5, "center_y": 0.6}
+        on_text_validate: passwordbox.focus = True
+    MDTextField:
+        id: passwordbox
+        hint_text: "Enter your Password: "
+        size_hint: 0.7,0.1
+        multiline: False
+        password: True
+        on_text_validate:root.logintofirebase()
+
+
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+    MDRoundFlatButton:
+        text: "Login"
+        pos_hint: {"center_x": 0.5, "center_y": 0.4}
+        on_press: root.logintofirebase()
+        increment_width: "164dp"
+        md_bg_color: app.theme_cls.primary_color
+        text_color: (1,1,1,1)
+    MDRoundFlatButton:
+        text: "Create a new Account"
+        pos_hint: {"center_x": 0.5, "center_y": 0.3}
+        on_press: root.manager.current = 'CreateAAccountScreen'
+        increment_width: "164dp"
+        text_color: (1,1,1,1)
+
+        md_bg_color: app.theme_cls.primary_color
+    MDLabel:
+        id: labelforinfo
+        text: ""
+        text_color: 0, 0, 1, 1
+        pos_hint: {"center_x": 0.5, "center_y": 0.1}
+
+<CreateAAccountScreen>:
+    name: "CreateAAccountScreen"
+    BoxLayout:
+        orientation: "vertical"
+
+        MDToolbar:
+            id: toolbar
+
+
+
+
+            title: "Create an Account: "
+            elevation: 10
+
+
+        MDLabel:
+            text: ""
+            halign: "center"
+    FloatLayout:
+        MDTextField:
+            id: emailboxsignup
+            hint_text: "Enter your email: "
+            size_hint: 0.7,0.1
+
+            multiline: False
+
+            pos_hint: {"center_x": 0.5, "center_y": 0.7}
+        MDTextField:
+            id: passwordboxsignup
+            hint_text: "Enter your Password: "
+            password:True
+            size_hint: 0.7,0.1
+
+            multiline: False
+
+            pos_hint: {"center_x": 0.5, "center_y": 0.6}
+        MDRoundFlatButton:
+            text: "Create a account with Access Code"
+            pos_hint: {"center_x": 0.5, "center_y": 0.1}
+            on_press:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'Create_an_account_with_access_code'
+            increment_width: "164dp"
+            text_color: (1,1,1,1)
+            md_bg_color: app.theme_cls.primary_color
+        MDRoundFlatButton:
+            text: "Create an Account"
+            pos_hint: {"center_x": 0.5, "center_y": 0.3}
+            on_press: root.createanewaccount()
+            increment_width: "164dp"
+            text_color: (1,1,1,1)
+            md_bg_color: app.theme_cls.primary_color
+        MDTextField:
+            id: username
+            hint_text: "Enter your Name: "
+
+            multiline: False
+            size_hint: 0.7,0.1
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        MDRoundFlatButton:
+            text: "Back to Sign in"
+            pos_hint: {"center_x": 0.5, "center_y": 0.2}
+            increment_width: "164dp"
+            text_color: (1,1,1,1)
+            md_bg_color: app.theme_cls.primary_color
+            on_press:
+
+                root.manager.transition.direction = 'left'
+
+
+                root.manager.current = 'LoginScreenExistingUsers'
+        MDRectangleFlatIconButton:
+            id: caller
+            icon: "arrow-down-drop-circle"
+            text: "Select a Grade"
+            pos_hint: {"center_x": 0.24, "center_y": 0.4}
+            theme_text_color: "Custom"
+            on_release: root.drop()
+            text_color: (156/255, 39/255, 176/255)
+            line_color: (1, 0, 1, 1)
+            icon_color: (1, 0, 0, 1)
+<Create_an_account_with_access_code>:
+    name: "Create_an_account_with_access_code"
+    BoxLayout:
+        orientation: "vertical"
+
+        MDToolbar:
+            id: toolbar
+
+
+
+
+            title: "Create a account with access code: "
+            elevation: 10
+
+
+        MDLabel:
+            text: ""
+            halign: "center"
+    FloatLayout:
+        MDTextField:
+            id: teacheremail
+            hint_text: "Enter your email: "
+            size_hint: 0.7,0.1
+
+            multiline: False
+
+            pos_hint: {"center_x": 0.5, "center_y": 0.7}
+        MDTextField:
+            id: teacherpass
+            hint_text: "Enter your Password: "
+            password: True
+            size_hint: 0.7,0.1
+
+            multiline: False
+
+            pos_hint: {"center_x": 0.5, "center_y": 0.6}
+        MDRoundFlatButton:
+            text: "Create an Account"
+            pos_hint: {"center_x": 0.5, "center_y": 0.2}
+            on_press: root.Create_a_teacher_account()
+            increment_width: "164dp"
+            text_color: (1,1,1,1)
+            md_bg_color: app.theme_cls.primary_color
+        MDTextField:
+            id: teachername
+            hint_text: "Enter your Name: "
+
+            multiline: False
+            size_hint: 0.7,0.1
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        MDTextField:
+            id: access_code
+            hint_text: "Enter the Access Code: "
+
+            multiline: False
+            size_hint: 0.7,0.1
+            pos_hint: {"center_x": 0.5, "center_y": 0.4}
+        MDRoundFlatButton:
+            text: "Back to Sign in"
+            pos_hint: {"center_x": 0.5, "center_y": 0.1}
+            increment_width: "164dp"
+            text_color: (1,1,1,1)
+            md_bg_color: app.theme_cls.primary_color
+            on_press:
+
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'LoginScreenExistingUsers'
+<Home_Screen>:
+    name: "Home_Screen"
+    BoxLayout:
+        orientation: "vertical"
+
+        MDToolbar:
+            id: toolbar
+            title: "Home Screen"
+            elevation: 10
+
+
+        MDLabel:
+            text: ""
+            halign: "center"
+    MDRectangleFlatButton:
+        id: code_scanner
+        text: "Scan QR Code"
+        pos_hint: {"center_x": 0.5, "center_y": 0.6}
+        on_press: root.switch_to_dectect_page()
+    MDRectangleFlatButton:
+        id: history_btn
+        text: "History"
+        pos_hint: {"center_x": 0.5, "center_y": 0.4}
+<KivyCamera>:
+    name: "dectectpage"
+    BoxLayout:
+        orientation: "vertical"
+
+        MDToolbar:
+            id: toolbar
+            title: "Scan QR Code"
+            elevation: 10
+
+
+        MDLabel:
+            text: ""
+            halign: "center"
+    Image:
+        id: img
+        size_hint: (1, 1)
+
+<KivyCamera_Teacher>:
+    name: "dectectpage_teacher"
+    BoxLayout:
+        orientation: "vertical"
+
+        MDToolbar:
+            id: toolbar
+            title: "Scan QR Code"
+            elevation: 10
+
+
+        MDLabel:
+            text: ""
+            halign: "center"
+    Image:
+        id: img
+        size_hint: (1, 1)
+
+
+
+<Accepted_page>:
+    name: "Accepted_page"
+    BoxLayout:
+        orientation: "vertical"
+
+        MDToolbar:
+            id: toolbar
+            title: "Restroom Pass: "
+            elevation: 10
+
+
+        MDLabel:
+            text: ""
+            halign: "center"
+    Image:
+        id: ikgm
+        size_hint: (0.4,0.4)
+        pos_hint: {"center_x": 0.5, "center_y": 0.65}
+        source:
+        keep_data: True
+    MDLabel:
+        id: Name
+    MDRectangleFlatButton:
+        text: "Show QR CODE"
+        on_press: root.ids.ikgm.source = "Out_QrCode.png"
+    MDLabel:
+        id: class
+    MDLabel:
+        id: Time_left
+
+
+<Accepted_page_Teacher>:
+    name: "Accepted_page_Teacher"
+    BoxLayout:
+        orientation: "vertical"
+
+        MDToolbar:
+            id: toolbar
+            left_action_items: [["chevron-left" ,lambda x: root.switchscreen()]]
+            title: "Signin Complete"
+            elevation: 10
+
+
+        MDLabel:
+            text: ""
+            halign: "center"
+    Image:
+        id: ikgm
+        size_hint: (0.6,0.6)
+        pos_hint: {"center_x": 0.5, "center_y": 0.65}
+        source: "120px-Google_Material_Design_check.png"
+        keep_data: True
+    MDLabel:
+        id: Name
+    MDLabel:
+        id: class
+    MDLabel:
+        id: Time_left
+
+<Verified_Screen_Student>:
+    name: "Verified_Screen_Student"
+    BoxLayout:
+        orientation: "vertical"
+
+        MDToolbar:
+            id: toolbar
+            left_action_items: [["chevron-left" ,lambda x: root.switchscreen()]]
+            title: "Signin Complete"
+            elevation: 10
+
+
+        MDLabel:
+            text: ""
+            halign: "center"
+    Image:
+        id: ikgm
+        size_hint: (0.6,0.6)
+        pos_hint: {"center_x": 0.5, "center_y": 0.65}
+        source: "120px-Google_Material_Design_check.png"
+        keep_data: True
+    MDLabel:
+        id: Name
+    MDLabel:
+        id: class
+    MDLabel:
+        id: Time_left
+
